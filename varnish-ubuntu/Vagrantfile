@@ -1,26 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-$script = <<SCRIPT
-sudo whoami
-sudo cat > /etc/apt/sources.list<<- EOM
-deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
-EOM
-sudo apt update
-SCRIPT
-
+#
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-14.04"
+  config.vm.box = "bento/ubuntu-16.04"
 
-  config.vm.provision "shell", inline: $script
+  config.vm.provision "shell", path: "boot.sh"
   #config.vm.provision "file", source: "./sources.list", destination: "/etc/apt/sources.list"
 
   # Disable automatic box update checking. If you disable this, then
